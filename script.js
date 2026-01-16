@@ -1,23 +1,31 @@
 let menuIcon = document.getElementById('menu-icon');
 let navbar = document.querySelector('.navbar');
-const scrollUp = document.querySelector('.scroll-up');
+let navLinks = document.querySelectorAll('.navbar a');
+let scrollUp = document.querySelector('.scroll-up');
 
+const TOKEN = "8206480851:AAHo9rz6Li25HBfKJjN-XpabdhDQpiKq9n4";
+const CHAT_ID = "7936048379";
+const URL = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+const form = document.getElementById("contactForm");
+const loading = document.getElementById("loading");
+const sendBtn = document.getElementById("sendBtn");
+
+
+
+// Click Navbar 
 menuIcon.onclick = () => {
     menuIcon.classList.toggle('bx-x');
     navbar.classList.toggle('active');
 };
 
-// Logika agar Navbar tertutup saat link diklik
-let navLinks = document.querySelectorAll('.navbar a');
-
 navLinks.forEach(link => {
     link.onclick = () => {
-        // Hapus class active untuk menutup navbar
         menuIcon.classList.remove('bx-x');
         navbar.classList.remove('active');
     };
 });
 
+// function Scrol navbar
 
 window.addEventListener('scroll', () => {
   if (window.scrollY > 500) {
@@ -27,37 +35,67 @@ window.addEventListener('scroll', () => {
   }
 });
 
-const textElement = document.querySelector('.typing-text');
-const word = ['Web Development', 'Botz Development'];
+// function connect to bot telegram
 
-let wordIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-let typedSpeed = 150;
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-function type() {
-  const currentWord = word[wordIndex];
+  loading.style.display = "block";
+  sendBtn.classList.add("loading");
+  sendBtn.value = "Sending...";
 
-  if (isDeleting) {
-    textElement.textContent = currentWord.substring(0, charIndex - 1);
-    charIndex--;
-    typedSpeed = 50;
-  } else {
-    textElement.textContent = currentWord.substring(0, charIndex + 1);
-    charIndex--;
-    typedSpeed = 150;
-  }
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const subject = form.subject.value.trim();
+  const message = form.message.value.trim();
 
-  if (!isDeleting && charIndex === currentWord.length) {
-    isDeleting = true;
-    typedSpeed = 2000;
-  } else if (isDeleting && charIndex == 0) {
-    isDeleting = false;
-    wordIndex++;
-    if (wordIndex == word.length) wordIndex = 0;
-    typedSpeed = 500;
-  }
-  setTimeout(type, typedSpeed);
-}
+  const telegramMessage = `
+━━━━━━━━━━━━━━━━━━
+📬 *CONTACT FORM*
+━━━━━━━━━━━━━━━━━━
 
-document.addEventListener('DOMContentLoaded', type);
+👤 *Name*  
+${name}
+
+📧 *Email*  
+${email}
+
+📌 *Subject*  
+${subject}
+
+💬 *Message*  
+${message}
+
+━━━━━━━━━━━━━━━━━━
+⏰ ${new Date().toLocaleString()}
+`;
+
+  fetch(URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      chat_id: CHAT_ID,
+      text: telegramMessage,
+      parse_mode: "Markdown"
+    })
+  })
+  .then(res => {
+    if (res.ok) {
+      alert("✅ Message sent successfully!");
+      form.reset();
+    } else {
+      alert("❌ Failed to send message");
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert("⚠️ Error sending message");
+  })
+  .finally(() => {
+    loading.style.display = "none";
+    sendBtn.classList.remove("loading");
+    sendBtn.value = "Send Message";
+  });
+});

@@ -4,13 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portofolio | Ipanzx</title>
+    
+    <!-- Style Css -->
+    
     <link rel="stylesheet" href="style.css" />
+    
+    <!-- Font Poppins Google -->
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https;//fonts.google.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- Font Awesome Google -->
+    
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -19,22 +28,23 @@
       referrerpolicy="no-referrer"
     />
 
+   <!-- Box Icons -->
+
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     
     <!-- AOS --> 
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
   </head>
   <body id="#">
     <header class="header">
     <a href="#" class="logo">Ipanzxx <span>Dev</span></a>
-    
     <i class="bx bx-menu bx-lg" id="menu-icon"></i>
-    
     <nav class="navbar">
         <a href="#home">Home</a>
         <a href="#about">About</a>
-        <a href="#skills">Skills</a> <a href="#services">Services</a>
+        <a href="#skills">Skills</a> 
+        <a href="#services">Services</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
     </nav>
@@ -42,10 +52,10 @@
 
     <section class="home" id="home">
       <div class="home-content">
-        <h1 data-aos="fade-left" data-aos-duration="1350">Hi, It's <span>Irfan</span></h1>
+        <h1 data-aos="fade-right" data-aos-duration="1350">Hi, It's <span>Irfan</span></h1>
         <h3 data-aos="fade-right" data-aos-duration="1400">I'am a <span>Web Development</span></h3>
         <p data-aos="fade-up" data-aos-duration="1450">
-          Hi! I'm Muhammad Irfan Irsyad, a beginner frontend developer passionate about building websites. I enjoy writing code and transforming ideas into clean, modern, and responsive designs. I'm currently honing my skills in HTML, CSS, and JavaScript, and am committed to continuing to grow in the world of frontend development.
+          Hi! I'm Muhammad Irfan Irsyad, a frontend developer passionate about building websites. I enjoy writing code and transforming ideas into clean, modern, and responsive designs. I'm currently honing my skills in HTML, CSS, and JavaScript, and am committed to continuing to grow in the world of frontend development.
         </p>
         <div class="social-icons">
           <a href="https://github.com/irfanxyz5" data-aos="zoom-in" data-aos-duration="2000">
@@ -240,21 +250,24 @@ Bot yang saya buat dirancang agar Menjadi Asisten, stabil, dan membantu mempermu
     <!-- Contact -->
     <section class="contact" id="contact">
       <h2 class="heading">Contact <span>Me</span></h2>
-      <form method="post">
+      <form id="contactForm">
         <div class="input-group">
           <div class="input-box">
-            <input type="text" placeholder="Full Name" data-aos="fade-right" data-aos-duration="1000"/>
-            <input type="email" placeholder="Email" data-aos="fade-right" data-aos-duration="1200"/>
+            <input type="text" name="name" placeholder="Full Name" data-aos="fade-right" data-aos-duration="1000"/>
+            <input type="email" name="email" placeholder="Email" data-aos="fade-right" data-aos-duration="1200"/>
           </div>
           <div class="input-box">
-            <input type="text" placeholder="Subject" data-aos="fade-right" data-aos-duration="1300"/>
+            <input type="text" name="subject" placeholder="Subject" data-aos="fade-right" data-aos-duration="1300"/>
           </div>
         </div>
         <div class="input-group-2">
-          <textarea name="" id="" placeholder="Your Message" cols="30" rows="10" data-aos="fade-left" data-aos-duration="1400"></textarea>
-          <input type="submit" value="Send Message" class="btn submit" data-aos="fade-left" data-aos-duration="1600"/>
+          <textarea name="message" id="" placeholder="Your Message" cols="30" rows="10" data-aos="fade-left" data-aos-duration="1400"></textarea>
+          <input type="submit" value="Send Message" class="btn submit" id="sendBtn" data-aos="fade-left" data-aos-duration="1600"/>
         </div>
       </form>
+      <div id="loading" class="loading">
+        <span></span>
+      </div>
     </section>
 
     <!-- Footer -->
@@ -266,10 +279,10 @@ Bot yang saya buat dirancang agar Menjadi Asisten, stabil, dan membantu mempermu
         <a href="https://wa.me/+6285183978270" data-aos="zoom-in-up" data-aos-duration="1200">
           <i class="bx bxl-whatsapp"></i>
         </a>
-        <a href="https://t.me/panzxiorzy" data-aos="zoom-in-up" data-aos-duration="1200">
+        <a href="https://t.me/panzxiorzyy" data-aos="zoom-in-up" data-aos-duration="1200">
           <i class="bx bxl-telegram"></i>
         </a>
-        <a href="#" data-aos="zoom-in-up" data-aos-duration="1200">
+        <a href="https://instagram.com/panzxiorzy" data-aos="zoom-in-up" data-aos-duration="1200">
           <i class="bx bxl-instagram-alt"></i>
         </a>
       </div>
@@ -303,8 +316,10 @@ Bot yang saya buat dirancang agar Menjadi Asisten, stabil, dan membantu mempermu
     <!-- Javascript -->
     <script src="script.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-     AOS.init();
-    </script>
+      <script>
+    AOS.init({
+      disable: 'mobile'
+    });
+  </script>
   </body>
 </html>

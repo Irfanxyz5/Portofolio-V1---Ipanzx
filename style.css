@@ -17,13 +17,40 @@
 html {
   font-size: 60%;
   overflow-x: hidden;
-  width: 100%;
 }
 
 body {
   background: var(--bg-color);
   color: var(--text-color);
 }
+
+.loading {
+  display: none;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.loading span {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--main-color);
+  border-top: 4px solid #0ef;
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btn.loading {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
 
 .header {
     position: fixed;
@@ -703,7 +730,7 @@ section {
     bottom: 0;
     left: 0;
     width: 0;
-    height: 1px;
+    height: 0.5px;
     background-color: var(--main-color);
     transition: 0.3s ease-in-out;
   }
@@ -772,7 +799,7 @@ section {
     .navbar {
         position: absolute;
         top: 100%;
-        left: -100%; /* Posisi awal di luar layar sebelah kiri */
+        left: -100%; 
         width: 100%;
         padding: 1rem 3%;
         background: rgba(0, 0, 0, 0.8);
@@ -782,14 +809,18 @@ section {
     }
 
     .navbar.active {
-        left: 0; /* Navigasi muncul dari kiri ke posisi 0 */
+        left: 0;
     }
 
     .navbar a {
         display: block;
         font-size: 2rem;
         margin: 3rem 0;
-        text-align: left; /* Teks menu rata kiri */
+        text-align: left;
+    }
+    
+    .home h3 {
+      font-size: 25px;
     }
 
   .home .about {
