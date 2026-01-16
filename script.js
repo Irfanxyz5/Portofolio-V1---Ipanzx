@@ -2,15 +2,14 @@ let menuIcon = document.getElementById('menu-icon');
 let navbar = document.querySelector('.navbar');
 let navLinks = document.querySelectorAll('.navbar a');
 let scrollUp = document.querySelector('.scroll-up');
+let typingElement = document.getElementById("typing");
+let form = document.getElementById("contactForm");
+let loading = document.getElementById("loading");
+let sendBtn = document.getElementById("sendBtn");
 
 const TOKEN = "8206480851:AAHo9rz6Li25HBfKJjN-XpabdhDQpiKq9n4";
 const CHAT_ID = "7936048379";
 const URL = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
-const form = document.getElementById("contactForm");
-const loading = document.getElementById("loading");
-const sendBtn = document.getElementById("sendBtn");
-
-
 
 // Click Navbar 
 menuIcon.onclick = () => {
@@ -34,6 +33,47 @@ window.addEventListener('scroll', () => {
     scrollUp.classList.remove('scroll-active');
   }
 });
+
+  const texts = [
+    "Web Developer",
+    "Frontend Developer",
+    "UI / UX Designer",
+    "Botz Developer"
+  ];
+
+  let textIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  const typingSpeed = 100;
+  const deletingSpeed = 60;
+  const delayAfterTyping = 1500;
+
+  function typingEffect() {
+    const currentText = texts[textIndex];
+
+    if (!isDeleting) {
+      typingElement.textContent = currentText.substring(0, charIndex + 1);
+      charIndex++;
+
+      if (charIndex === currentText.length) {
+        setTimeout(() => isDeleting = true, delayAfterTyping);
+      }
+    } else {
+      typingElement.textContent = currentText.substring(0, charIndex - 1);
+      charIndex--;
+
+      if (charIndex === 0) {
+        isDeleting = false;
+        textIndex = (textIndex + 1) % texts.length;
+      }
+    }
+
+    setTimeout(
+      typingEffect,
+      isDeleting ? deletingSpeed : typingSpeed
+    );
+  }
 
 // function connect to bot telegram
 
@@ -99,3 +139,6 @@ ${message}
     sendBtn.value = "Send Message";
   });
 });
+
+// Run Function
+  typingEffect();
