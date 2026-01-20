@@ -34,6 +34,10 @@ window.addEventListener('scroll', () => {
   }
 });
 
+document.querySelectorAll('[data-aos]').forEach((el, i) => {
+  el.setAttribute('data-aos-delay', i * 35);
+});
+
   const texts = [
     "Web Developer",
     "Frontend Developer",
